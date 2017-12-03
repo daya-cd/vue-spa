@@ -1,8 +1,14 @@
 module.exports = {
   root: true,
+    parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module'
   },
+    "rules": {
+        "indent": 0,
+        "space-in-parens": 2,
+        "space-before-function-paren": 0
+    },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',
   // required to lint *.vue files
