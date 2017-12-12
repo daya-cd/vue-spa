@@ -1,9 +1,9 @@
 <template>
     <div class="columns">
         <div class="column is-one-third" v-for="(post) in posts" v-bind:key="post.id">
-            <app-post :link="post.link">
-                <h3 slot="title">{{ post.title }}</h3>
-                <span slot="content">{{ post.content }}</span>
+            <app-post :link="post.rest_api_enabler.Link">
+                <h3 slot="title" v-html="post.title.rendered"></h3>
+                <span slot="content" v-html="post.content.rendered"></span>
             </app-post>
         </div>
     </div>
@@ -23,7 +23,7 @@
             }
         },
         methods: {
-            loadPosts(){
+            loadPosts() {
                 let categoryId = 2
                 if (this.id === 'mobile') {
                     categoryId = 11

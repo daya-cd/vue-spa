@@ -12,7 +12,8 @@ pids
 *.seed
 *.pid.lock
 
-/.idea/
+/.idea/*
+/.idea/workspace.xml
 
 /.DS_Store/
 
