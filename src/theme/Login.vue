@@ -2,8 +2,6 @@
     <div class="content">
         <div v-if="isAuthenticated">
             Hello authenticated user!
-            <p>Name: {{profile.firstName}}</p>
-            <p>Favorite Sandwich: {{profile.favoriteSandwich}}</p>
             <button v-on:click="logout()" class="button is-primary">
                 Logout
             </button>
@@ -60,39 +58,22 @@
     data () {
       return {
         username: '',
-        password: '',
-        profile: {}
+        password: ''
       }
     },
       computed: {
           ...mapGetters(['isAuthenticated'])
       },
-    watch: {
-    /*  isAuthenticated: function (val) {
-        if (val) {
-          appService.getProfile()
-            .then(profile => {
-              this.profile = profile
-            })
-        } else {
-          this.profile = {}
-        }
-          eventBus.$emit('authStatusUpdate', val)
-      } */
-    },
     methods: {
         ...mapActions({
             logout: 'logout'
         }),
       login () {
          this.$store.dispatch('login', {username: this.username, password: this.password})
-      }
-    },
-    created () {
-      let expiration = window.localStorage.getItem('tokenExpiration')
-      var unixTimestamp = new Date().getTime() / 1000
-      if (expiration !== null && parseInt(expiration) - unixTimestamp > 0) {
-       //  this.isAuthenticated = true
+             .then(() => {
+                 this.username = ''
+                 this.password = ''
+             })
       }
     }
   }
